@@ -1,0 +1,9 @@
+{
+    "editor.wordWrap": "on",
+    "editor.cursorBlinking": "expand",
+    "workbench.statusBar.visible": false,
+    "editor.renderWhitespace": "all",
+    "breadcrumbs.enabled": false,
+    "zenMode.showTabs": "none",
+    "workbench.colorTheme": "Light"
+}

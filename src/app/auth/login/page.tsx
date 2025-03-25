@@ -13,7 +13,7 @@ function LoginPage() {
                             <SigninForm />
                             <Flex gap='4' className="pt-8" justify='center'>
                                 <Text>
-                                    Don't have an account?
+                                  Don&#39;t have an account?
                                 </Text>
                                 <Link asChild>
                                     <NavLink href='/auth/register' className="text-white hover:text-gray-300 transition-all" >
