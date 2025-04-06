@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
 import NavBar from "@/components/NavBar";
 import React from "react";
+import GlobalContext from "@/context/GlobalContext";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
 
@@ -20,10 +21,12 @@ export default function RootLayout({
       <body
         className=''
       >
-        <Theme appearance="dark">
-          <NavBar/>
-          {children}
-        </Theme>
+        <GlobalContext>
+          <Theme appearance="dark">
+            <NavBar />
+            {children}
+          </Theme>
+        </GlobalContext>
       </body>
     </html>
   );
