@@ -93,6 +93,6 @@ export const NavBar = () => {
             </Container>
         </nav>
     )
-}
+} 
 
 export default NavBar;
