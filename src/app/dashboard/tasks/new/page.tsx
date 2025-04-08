@@ -1,4 +1,4 @@
-import { Container, Heading } from "@radix-ui/themes"
+import { Container, Heading } from '@radix-ui/themes';
 
 const TaskNewPage = () => {
   return (
@@ -7,7 +7,7 @@ const TaskNewPage = () => {
         <Heading>Task new page</Heading>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default TaskNewPage
+export default TaskNewPage;
