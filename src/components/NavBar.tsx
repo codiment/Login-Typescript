@@ -49,7 +49,7 @@ export const NavBar = () => {
                 <li>
                   <DropdownMenu.Root>
                     <DropdownMenu.Trigger>
-                      <Button variant="ghost" radius="full">
+                      <Button variant="ghost" radius="full" style={{ cursor: 'pointer' }}>
                         <Avatar
                           size="2"
                           src={session?.user?.image || ''}
@@ -77,7 +77,11 @@ export const NavBar = () => {
 
                       <DropdownMenu.Separator />
 
-                      <DropdownMenu.Item color="red" onClick={() => signOut({ callbackUrl: '/' })}>
+                      <DropdownMenu.Item
+                        color="red"
+                        onClick={() => signOut({ callbackUrl: '/' })}
+                        style={{ cursor: 'pointer' }}
+                      >
                         <Flex gap="2" align="center">
                           <ExitIcon />
                           Logout

@@ -33,12 +33,12 @@ function SignupForm() {
         password: data.password,
       });
 
-      if (!result?.ok) {
+      if (result?.error) {
         console.log(result?.error);
         return;
-      } else {
-        router.push('/dashboard');
       }
+
+      router.push('/dashboard');
     }
   });
 

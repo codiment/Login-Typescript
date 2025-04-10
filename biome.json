@@ -6,8 +6,14 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
-    }
+      "recommended": true,
+      "correctness": {
+        "noConstructorReturn": {
+          "level": "off"
+        }
+      }
+    },
+    "ignore": ["generated/**"]
   },
   "formatter": {
     "enabled": true,
@@ -23,6 +29,16 @@
     }
   },
   "files": {
-    "ignore": ["node_modules", ".next", "dist", "build", "prisma/migrations", "*.d.ts"]
+    "ignore": [
+      "node_modules",
+      ".next",
+      "dist",
+      "build",
+      "prisma/migrations",
+      "*.d.ts",
+      "prisma/*.db",
+      "prisma/*.db-journal",
+      "generated/**"
+    ]
   }
 }
