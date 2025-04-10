@@ -9,6 +9,14 @@ export async function POST(request: Request) {
 
     const session = await getServerSession(authOptions)
 
+    if (!session) {
+        return NextResponse.json({
+            message: 'Unauthorized'
+        }, {
+            status: 401
+        })
+    }
+
     console.log(session)
     console.log(data)
 
@@ -18,7 +26,7 @@ export async function POST(request: Request) {
             description: data.description,
             user: {
                 connect: {
-                    id: parseInt(session.id)
+                    id: parseInt(session?.user.id)
                 }
             }
         }
