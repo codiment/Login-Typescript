@@ -1,5 +1,3 @@
-const page = () => {
-  return <div>Project Detail</div>;
-};
+import NewPage from "../new/page";
 
-export default page;
+export default NewPage;
