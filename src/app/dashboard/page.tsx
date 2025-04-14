@@ -19,10 +19,10 @@ async function DashboardPage() {
   console.log(projects);
 
   return (
-    <Container className="mt-10">
+    <Container className="mt-10 px-4 sm:px-6 md:px-0">
       <HeaderDashboard />
 
-      <Grid gap="5" columns="3" pt="7">
+      <Grid gap="5" columns={{ initial: '1', sm: '2', md: '3' }} pt="7" pb="7">
         {projects.map((project) => (
           <ProjectCard project={project} key={project.id} />
         ))}

@@ -7,7 +7,7 @@ const HeaderDashboard = () => {
   const router = useRouter();
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between px-4 md:px-0">
       <Heading>Projects</Heading>
       <Button onClick={() => router.push('/dashboard/projects/new')} style={{ cursor: 'pointer' }}>
         Add Project

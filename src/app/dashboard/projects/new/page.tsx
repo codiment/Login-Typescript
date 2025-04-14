@@ -3,11 +3,12 @@
 import { CheckIcon, TrashIcon } from '@radix-ui/react-icons';
 import { Button, Card, Container, Flex, Heading, TextArea, TextField } from '@radix-ui/themes';
 import axios from 'axios';
-import { useRouter, useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-
+import { toast } from 'sonner';
 const TaskNewPage = () => {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
       title: '',
       description: '',
@@ -15,21 +16,43 @@ const TaskNewPage = () => {
   });
 
   const router = useRouter();
-  const params = useParams();
+  const params = useParams() as { projectId: string };
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
 
-   if (!params.projectId) {
+    if (!params.projectId) {
       const res = await axios.post('/api/projects', data);
       if (res.status === 201) {
-        router.push('/dashboard')
+        router.push('/dashboard');
       }
-      
     } else {
-      console.log('updating')
+      const res = await axios.put(`/api/projects/${params.projectId}`, data);
+      if (res.status === 200) {
+        router.push('/dashboard');
+      }
     }
   });
+
+  const handleDelete = async (projectId: string) => {
+    console.log(projectId);
+    const res = await axios.delete(`/api/projects/${projectId}`);
+
+    if (res.status === 200) {
+      router.push('/dashboard');
+      toast.success('Project deleted');
+    }
+  };
+
+  useEffect(() => {
+    if (params.projectId) {
+      axios.get(`/api/projects/${params.projectId}`).then((res) => {
+        console.log(res.data);
+        setValue('title', res.data.title);
+        setValue('description', res.data.description);
+      });
+    }
+  }, [params.projectId, setValue]);
 
   return (
     <Container size="1" height={'100%'} className="p-3 md:p-0 bg-black">
@@ -71,16 +94,20 @@ const TaskNewPage = () => {
               />
 
               <Button radius="full" type="submit" style={{ cursor: 'pointer' }}>
-                {params.projectId? 'Save' : 'Create'}
-                <CheckIcon/>
+                {params.projectId ? 'Save' : 'Create'}
+                <CheckIcon />
               </Button>
 
-              <Button radius='full' style={{ cursor : 'pointer '}} color='red'>
-                {params.projectId? 'Delete' : 'Cancel'}
-                <TrashIcon/>
+              <Button
+                radius="full"
+                style={{ cursor: 'pointer ' }}
+                color="red"
+                onClick={() => handleDelete(params.projectId)}
+              >
+                {params.projectId ? 'Delete' : 'Cancel'}
+                <TrashIcon />
               </Button>
             </form>
-            
           </div>
         </Card>
       </Flex>

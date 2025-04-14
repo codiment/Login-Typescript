@@ -13,7 +13,7 @@ export const NavBar = () => {
 
   return (
     <nav className="bg-zinc-950 py-4">
-      <Container>
+      <Container className="px-4 md:px-0">
         <Flex justify="between" align="center">
           <NextLink href="/">
             <Heading>RadixNext</Heading>
